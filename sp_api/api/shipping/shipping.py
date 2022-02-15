@@ -279,4 +279,267 @@ For more information, see "Usage Plans and Rate Limits" in the Selling Partner A
         """
     
         return self._request(fill_query_params(kwargs.pop('path'), trackingId), params=kwargs)
-    
+
+    @sp_endpoint('/easyship/v0/timeSlots', method='POST')
+    def get_time_slots(self, **kwargs) -> ApiResponse:
+        """
+        Raw request:
+            {
+              "marketplaceId": "string",
+              "amazonOrderId": "string",
+              "packageDimensions": {
+                "length": 0.01,
+                "width": 0.01,
+                "height": 0.01,
+                "unit": "cm",
+                "identifier": "string"
+              },
+              "packageWeight": {
+                "value": 11,
+                "unit": "grams"
+              }
+            }
+        Response:
+            {
+              "payload": {
+                "amazonOrderId": "string",
+                "timeSlotList": [
+                  {
+                    "slotId": "string",
+                    "startTime": "2022-02-15T09:49:50.875Z",
+                    "endTime": "2022-02-15T09:49:50.875Z",
+                    "handoverMethod": "PICKUP"
+                  }
+                ]
+              },
+              "errors": [
+                {
+                  "code": "InvalidInput",
+                  "message": "string",
+                  "details": "string"
+                }
+              ]
+            }
+        """
+        return self._request(fill_query_params(kwargs.pop('path')), params=kwargs)
+
+    @sp_endpoint('/easyship/v0/packages', method='GET')
+    def get_packages(self, **kwargs) -> ApiResponse:
+        """
+        Raw response:
+            {
+              "payload": {
+                "scheduledPackageId": {
+                  "amazonOrderId": "string",
+                  "packageId": "string"
+                },
+                "packageDimensions": {
+                  "length": 0.01,
+                  "width": 0.01,
+                  "height": 0.01,
+                  "unit": "cm",
+                  "identifier": "string"
+                },
+                "packageWeight": {
+                  "value": 11,
+                  "unit": "grams"
+                },
+                "packageItemList": [
+                  {
+                    "orderItemId": "string",
+                    "orderItemSerialNumberList": [
+                      "string"
+                    ]
+                  }
+                ],
+                "packageTimeSlot": {
+                  "slotId": "string",
+                  "startTime": "2022-02-15T10:00:47.380Z",
+                  "endTime": "2022-02-15T10:00:47.380Z",
+                  "handoverMethod": "PICKUP"
+                },
+                "packageIdentifier": "string",
+                "invoice": {
+                  "invoiceNumber": "string",
+                  "invoiceDate": "2022-02-15T10:00:47.380Z"
+                },
+                "packageStatus": "ReadyForPickup",
+                "trackingDetails": {
+                  "trackingId": "string"
+                }
+              },
+              "errors": [
+                {
+                  "code": "InvalidInput",
+                  "message": "string",
+                  "details": "string"
+                }
+              ]
+            }
+        """
+        return self._request(fill_query_params(kwargs.pop('path')), params=kwargs)
+
+    @sp_endpoint('/easyship/v0/packages', method='POST')
+    def create_scheduled_packages(self, **kwargs) -> ApiResponse:
+        """
+        Raw request:
+            {
+              "amazonOrderId": "string",
+              "marketplaceId": "string",
+              "packageRequestDetails": {
+                "packageDimensions": {
+                  "length": 0.01,
+                  "width": 0.01,
+                  "height": 0.01,
+                  "unit": "cm",
+                  "identifier": "string"
+                },
+                "packageWeight": {
+                  "value": 11,
+                  "unit": "grams"
+                },
+                "packageItemList": [
+                  {
+                    "orderItemId": "string",
+                    "orderItemSerialNumberList": [
+                      "string"
+                    ]
+                  }
+                ],
+                "packageTimeSlot": {
+                  "slotId": "string",
+                  "startTime": "2022-02-15T07:23:06.795Z",
+                  "endTime": "2022-02-15T07:23:06.795Z",
+                  "handoverMethod": "PICKUP"
+                },
+                "packageIdentifier": "string"
+              }
+            }
+        Response:
+            {
+              "payload": {
+                "scheduledPackageId": {
+                  "amazonOrderId": "string",
+                  "packageId": "string"
+                },
+                "packageDimensions": {
+                  "length": 0.01,
+                  "width": 0.01,
+                  "height": 0.01,
+                  "unit": "cm",
+                  "identifier": "string"
+                },
+                "packageWeight": {
+                  "value": 11,
+                  "unit": "grams"
+                },
+                "packageItemList": [
+                  {
+                    "orderItemId": "string",
+                    "orderItemSerialNumberList": [
+                      "string"
+                    ]
+                  }
+                ],
+                "packageTimeSlot": {
+                  "slotId": "string",
+                  "startTime": "2022-02-15T10:01:49.901Z",
+                  "endTime": "2022-02-15T10:01:49.901Z",
+                  "handoverMethod": "PICKUP"
+                },
+                "packageIdentifier": "string",
+                "invoice": {
+                  "invoiceNumber": "string",
+                  "invoiceDate": "2022-02-15T10:01:49.901Z"
+                },
+                "packageStatus": "ReadyForPickup",
+                "trackingDetails": {
+                  "trackingId": "string"
+                }
+              },
+              "errors": [
+                {
+                  "code": "InvalidInput",
+                  "message": "string",
+                  "details": "string"
+                }
+              ]
+            }
+        """
+        return self._request(fill_query_params(kwargs.pop('path')), params=kwargs)
+
+    @sp_endpoint('/easyship/v0/packages', method='PATCH')
+    def update_scheduled_packages(self, **kwargs) -> ApiResponse:
+        """
+        Raw request:
+            {
+              "marketplaceId": "string",
+              "scheduledPackageUpdateDetailsList": [
+                {
+                  "scheduledPackageId": {
+                    "amazonOrderId": "string",
+                    "packageId": "string"
+                  },
+                  "packageTimeSlot": {
+                    "slotId": "string",
+                    "startTime": "2022-02-15T10:03:59.381Z",
+                    "endTime": "2022-02-15T10:03:59.381Z",
+                    "handoverMethod": "PICKUP"
+                  }
+                }
+              ]
+            }
+        Response:
+            {
+              "payload": [
+                {
+                  "scheduledPackageId": {
+                    "amazonOrderId": "string",
+                    "packageId": "string"
+                  },
+                  "packageDimensions": {
+                    "length": 0.01,
+                    "width": 0.01,
+                    "height": 0.01,
+                    "unit": "cm",
+                    "identifier": "string"
+                  },
+                  "packageWeight": {
+                    "value": 11,
+                    "unit": "grams"
+                  },
+                  "packageItemList": [
+                    {
+                      "orderItemId": "string",
+                      "orderItemSerialNumberList": [
+                        "string"
+                      ]
+                    }
+                  ],
+                  "packageTimeSlot": {
+                    "slotId": "string",
+                    "startTime": "2022-02-15T10:04:42.837Z",
+                    "endTime": "2022-02-15T10:04:42.837Z",
+                    "handoverMethod": "PICKUP"
+                  },
+                  "packageIdentifier": "string",
+                  "invoice": {
+                    "invoiceNumber": "string",
+                    "invoiceDate": "2022-02-15T10:04:42.837Z"
+                  },
+                  "packageStatus": "ReadyForPickup",
+                  "trackingDetails": {
+                    "trackingId": "string"
+                  }
+                }
+              ],
+              "errors": [
+                {
+                  "code": "InvalidInput",
+                  "message": "string",
+                  "details": "string"
+                }
+              ]
+            }
+        """
+        return self._request(fill_query_params(kwargs.pop('path')), params=kwargs)
