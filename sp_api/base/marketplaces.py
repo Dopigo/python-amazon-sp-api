@@ -9,6 +9,7 @@ Europe
 Country	marketplaceId	Country code
 Spain	A1RKKUPIHCS9HS	ES
 United Kingdom	A1F83G8C2ARO7P	GB
+Belgium AMEN7PMS3EDWL BE
 France	A13V1IB3VIYZZH	FR
 Netherlands	A1805IZSGTT6HS	NL
 Germany	A1PA6795UKMFR9	DE
@@ -30,15 +31,15 @@ from enum import Enum
 import os
 
 
-class AWS_ENV(Enum):
+class AwsEnv(Enum):
     PRODUCTION = "PRODUCTION"
     SANDBOX = "SANDBOX"
 
 
-AWS_ENVIRONMENT = os.getenv("AWS_ENV", AWS_ENV.PRODUCTION.name)
+AWS_ENVIRONMENT = os.getenv("AWS_ENV", AwsEnv.PRODUCTION.name)
 BASE_URL = "https://sellingpartnerapi"
 
-if AWS_ENV(AWS_ENVIRONMENT) is AWS_ENV.SANDBOX:
+if AwsEnv(AWS_ENVIRONMENT) == AwsEnv.SANDBOX:
     BASE_URL = "https://sandbox.sellingpartnerapi"
 
 
@@ -50,6 +51,7 @@ class Marketplaces(Enum):
     """
 
     AE = (f"{BASE_URL}-eu.amazon.com", "A2VIGQ35RCS4UG", "eu-west-1")
+    BE = (f"{BASE_URL}-eu.amazon.com", "AMEN7PMS3EDWL", "eu-west-1")
     DE = (f"{BASE_URL}-eu.amazon.com", "A1PA6795UKMFR9", "eu-west-1")
     PL = (f"{BASE_URL}-eu.amazon.com", "A1C3SOZRARQ6R3", "eu-west-1")
     EG = (f"{BASE_URL}-eu.amazon.com", "ARBP9OOSHTCHU", "eu-west-1")
@@ -74,7 +76,7 @@ class Marketplaces(Enum):
     MX = (f"{BASE_URL}-na.amazon.com", "A1AM78C64UM0Y8", "us-east-1")
 
     def __init__(self, endpoint, marketplace_id, region):
-        """Easy dot access like: Marketplaces.endpoint ."""
         self.endpoint = endpoint
         self.marketplace_id = marketplace_id
         self.region = region
+
