@@ -141,7 +141,7 @@ class Client(BaseClient):
         if add_marketplace:
             self._add_marketplaces(data if self.method in ('POST', 'PUT') else params)
 
-        res = request(self.method,
+        res = self.logger_request(self.method,
                       self.endpoint + self._check_version(path),
                       params=params,
                       data=json.dumps(data) if data and self.method in ('POST', 'PUT', 'PATCH') else None,
